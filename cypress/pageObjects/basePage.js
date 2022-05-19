@@ -1,7 +1,7 @@
 class BasePage {
   
 
-  
+
     static get url() {
       return "/";
     }
@@ -19,6 +19,19 @@ class BasePage {
         .then(() => this.closeAdvert());
     }
   
+    static validatePath(
+          options = {
+            timeout: Cypress.config("defaultCommandTimeout"),
+            expectedUrl: this.url,
+          }
+        ) {
+          return cy
+            .location(options)
+            .should((loc) =>
+              expect(`${loc.pathname}${loc.search}`).to.eq(options.expectedUrl)
+            );
+        }
+
     static assertIsCurrentPage(
       options = {
         timeout: Cypress.config("defaultCommandTimeout"),
@@ -28,18 +41,7 @@ class BasePage {
       return this.validatePath(options);
     }
   
-    static validatePath(
-      options = {
-        timeout: Cypress.config("defaultCommandTimeout"),
-        expectedUrl: this.url,
-      }
-    ) {
-      return cy
-        .location(options)
-        .should((loc) =>
-          expect(`${loc.pathname}${loc.search}`).to.eq(options.expectedUrl)
-        );
-    }
+    
   
     static closeAdvert() {
       return cy.get("#close-fixedban").should("be.visible").click();
