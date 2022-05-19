@@ -12,7 +12,7 @@ describe("Final-task", () => {
     FormPage.visit();
   });
 
-  it.only("Filling form and testing result", () => {
+  it.only("Filling form and testing result data", () => {
 
     // formData.json --> data
     cy.fixture('formData').then(data => {
