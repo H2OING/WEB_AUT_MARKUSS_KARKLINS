@@ -1,7 +1,6 @@
 class BasePage {
   
 
-
     static get url() {
       return "/";
     }
@@ -40,9 +39,7 @@ class BasePage {
     ) {
       return this.validatePath(options);
     }
-  
-    
-  
+
     static closeAdvert() {
       return cy.get("#close-fixedban").should("be.visible").click();
     }
