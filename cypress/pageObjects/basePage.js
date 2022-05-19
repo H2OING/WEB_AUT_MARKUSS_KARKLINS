@@ -1,5 +1,7 @@
 class BasePage {
   
+
+  
     static get url() {
       return "/";
     }
